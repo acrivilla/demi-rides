@@ -16,38 +16,91 @@ Finally, the driver will be released and the transaction reference will be save 
 
 The following endpoints allow this integration:
 
-1. Create payment methods '/payment_methods'
-allows you to associate a credit card to an existing customer, it should be noted that said card
+1. Create payment methods: **POST** '/payment_methods'
+
+It allow to associate a credit card to an existing customer, it should be noted that said card
 must be previously tokenized in the payment gateway
 
 Request:
+
+```js
 {
-    "rider_id": 1, //id from rider in table Rier
+    "rider_id": 1, //id from table Riders
     "token": "tok_test_44055_1299E713fbe3eae91A2eE811a0d5410f", // token from credit card
     "type": "card" // type of card, may be nequi too.
 }
+```
 
 Response:
+
+```js
 {
     "payment_method_id": 56043,
     "message": "payment method created"
 }
+```
 
+2. Create a ride: **POST** '/rides'
 
-gemas
-	sinatra
-	sequel
-	sequel_enum
-	httpparty
-  time
-  time_difference
+It allow to initialize a ride sending location from rider
 
-correr las migraciones
-	sequel -m db/migrations sqlite://db/rides.db
+Request:
 
-correr los seeds
-	rake db:seeds
+```js
+{
+    "rider_id": 1,
+    //initial point
+    "initial_latitude": 4.811757436457297,
+    "initial_longitude": -75.69131283645287,
+    //arrival point
+    "final_latitude": 4.8307444296552235,
+    "final_longitude": -75.66706566842608
+}
+```
 
-para iniciallizar la aplicacion
-  $rackup ./config/config.ru
+Response:
 
+```js
+{
+    "ride_id": 10,
+    "message": "Driver found, Say hello!! to driver_0"
+}
+```
+
+3. Finish a ride: **PATCH** /rides/:ride_id/finish
+
+It allow to end a ride the param [:ride_id] is the identifier from a ride.
+
+Response:
+
+```js
+{
+    "ride": 1,
+    "transaction": "144055-1683922840-46966", //transaction reference from payment bridge
+    "message": "transaction created in status PENDING"
+}
+```
+
+## Install application
+
+First at all, you need Ruby installed in your system, this app was developed in the local
+environment with version 3.0.4. Then you must install the following gems, with the command
+gem install:
+
+- sinatra
+- sequel
+- sequel_enum
+- httpparty
+- time
+- time_difference
+
+Run the database migrations with the command:
+  > sequel -m db/migrations sqlite://db/rides.db
+
+To populate the database with dummy information run:
+  > rake db:seeds
+
+Finally to initialize the app run
+  > $rackup ./config/config.ru
+
+the server listen in local on <http://127.0.0.1:9292>
