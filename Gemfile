@@ -1,0 +1,10 @@
+source 'https://rubygems.org'
+ruby '3.0.4'
+
+gem 'sinatra'
+gem 'sequel'
+gem 'sequel_enum'
+gem 'httpparty'
+gem 'time'
+gem 'time_difference'
+gem 'rspec'

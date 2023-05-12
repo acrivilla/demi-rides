@@ -95,6 +95,7 @@ gem install:
 - httpparty
 - time
 - time_difference
+- rspec
 
 Run the database migrations with the command:
   > sequel -m db/migrations sqlite://db/rides.db
@@ -106,3 +107,8 @@ Finally to initialize the app run
   > rackup ./config/config.ru
 
 the server listen in local on <http://127.0.0.1:9292>
+
+## Specs
+
+To run spec to calculate total_amount run:
+  > rspec spec/app/services/calculate_service_spec.rb

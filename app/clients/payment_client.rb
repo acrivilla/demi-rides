@@ -15,7 +15,7 @@ class PaymentClient
     rescue HTTPClient::ConnectTimeoutError => e
       (retries += 1) > 2 ? create_log(e) : retry
     rescue => error
-      {messages: error.messages.join(',')}
+      {messages: error.message}
     end
   end
 

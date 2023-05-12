@@ -24,7 +24,7 @@ class RidesService
       {message: 'Unavailable drivers'}
     end
   rescue => error
-    {message: error.messages.join(',')}
+    {message: error.message}
   end
 
   def finish_ride
@@ -48,7 +48,7 @@ class RidesService
       {message: "Ride #{@params} not found"}
     end
   rescue => error
-    {message: error.messages.join(',')}
+    {message: error.message}
   end
 
   private

@@ -7,7 +7,7 @@ class RidersService
   def initialize(params)
     @params = params
   rescue => error
-    error.messages.join(',')
+    error.message
   end
 
   def create_payment_method
@@ -27,7 +27,7 @@ class RidersService
     end
 
   rescue => error
-    {message: error.messages.join(',')}
+    {message: error.message}
   end
 
   private
