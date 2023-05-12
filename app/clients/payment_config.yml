@@ -1,0 +1,8 @@
+endpoints:
+  base_url: 'https://sandbox.wompi.co'
+  payment_method: '/v1/payment_sources'
+  acceptance_token: '/v1/merchants/'
+  transactions: '/v1/transactions'
+keys:
+  public_key: 'pub_test_7rbl12q5tLgAJwrJygAmA0zZt8JOVUmy'
+  private_key: 'prv_test_xG2P33S4B7p4OCLas7NXS6iHt2HfRgLQ'
