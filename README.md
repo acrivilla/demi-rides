@@ -87,6 +87,8 @@ First at all, you need Ruby installed in your system, this app was developed in 
 environment with version 3.0.4. Then you must install the following gems, with the command
 gem install:
 
+  > bundle install
+
 - sinatra
 - sequel
 - sequel_enum
@@ -101,6 +103,6 @@ To populate the database with dummy information run:
   > rake db:seeds
 
 Finally to initialize the app run
-  > $rackup ./config/config.ru
+  > rackup ./config/config.ru
 
 the server listen in local on <http://127.0.0.1:9292>
